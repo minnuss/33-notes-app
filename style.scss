@@ -1,0 +1,128 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%; // 10px
+  font-family: 'Poppins', sans-serif; // 'Montserrat', 'Roboto';
+}
+
+body {
+  min-height: 100vh;
+  font-size: 1.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 3rem;
+  background-color: #303952;
+
+  .add {
+    position: fixed;
+    top: 1.5rem;
+    right: 50%;
+    transform: translateX(50%);
+    background-color: #3dc1d3;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    z-index: 100;
+  }
+
+  .add:hover {
+    background-color: #34a1af;
+  }
+
+  .note {
+    background-color: #fff;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 1);
+    margin: 30px 20px;
+    height: 350px;
+    width: 350px;
+    position: relative;
+    margin-top: 20px;
+    z-index: 3;
+
+    .tools {
+      background-color: #3dc1d3;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.5rem;
+
+      button {
+        background-color: transparent;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        font-size: 1.6rem;
+        margin-left: 1rem;
+        outline: none;
+      }
+    }
+
+    // z-index 1, so textarea cannot be edited without unlocking
+    textarea {
+      position: relative;
+      outline: none;
+      font-size: 1.8rem;
+      border: none;
+      min-height: 322px;
+      width: 350px;
+      padding: 20px;
+      z-index: 1;
+    }
+    // element thats going to be on top of textarea when edit mode is locked
+    .main {
+      position: absolute;
+      top: 28px;
+      background-color: rgb(224, 196, 32);
+      min-height: 322px;
+      width: 350px;
+      opacity: 0.3;
+      font-size: 1.5rem;
+      padding: 20px;
+      z-index: 2;
+    }
+    // textarea pushed above with z-index, so it can be edited
+    textarea.unlocked {
+      z-index: 3;
+    }
+  }
+
+  @media (max-width: 780px) {
+    padding: 10px;
+    justify-content: center;
+    .add {
+      top: initial;
+      bottom: 1.5rem;
+      right: 6rem;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .add {
+      top: initial;
+      bottom: 1.5rem;
+      right: 6rem;
+    }
+
+    .note {
+      margin: 10px 0px;
+      width: 300px;
+
+      textarea {
+        width: 300px;
+      }
+      // element thats going to be on top of textarea when edit mode is locked
+      .main {
+        width: 300px;
+      }
+    }
+  }
+}
